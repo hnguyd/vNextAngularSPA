@@ -1,4 +1,5 @@
 {
+    /* Click to learn more about project.json  http://go.microsoft.com/fwlink/?LinkID=517074 */
     "webroot": "wwwroot",
     "version": "1.0.0-*",
     "dependencies": {
@@ -7,7 +8,7 @@
         "EntityFramework.SqlServer": "7.0.0-beta3",
         "EntityFramework.Commands": "7.0.0-beta3",
         "Microsoft.AspNet.Mvc": "6.0.0-beta3",
-        "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-beta3", 
+        /* "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-beta3", */
         "Microsoft.AspNet.Diagnostics": "1.0.0-beta3",
         "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-beta3",
         "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta3",
@@ -22,6 +23,7 @@
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta3"
     },
     "commands": {
+        /* Change the port number when you are self hosting this application */
         "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
         "gen": "Microsoft.Framework.CodeGeneration",
         "ef":  "EntityFramework.Commands",
