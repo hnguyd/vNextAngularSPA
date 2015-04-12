@@ -4,27 +4,41 @@
 
     <div ng-controller="NavigationCtrl">
         <div class="menu-container"><cst-top-menu/></div>
-        <section id="main" style="height:90%;">
-            <div class="container body-content">
-                <div data-ng-view ng-animate>
+        <section id="main" class="container body-content">
+            <div data-ng-view ng-animate>
                     
-                </div>
-                <hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                </footer>
-            </div>
+            </div>            
         </section>
+        <hr />
+        <footer class="container">
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
         <cst-loading-overlay class="hide"></cst-loading-overlay>
     </div> 
 
 @section Scripts {
     <script src="/Scripts/config.js"></script>
+    
+    <!-- Load app main script -->
     <script src="/Scripts/app/app.js"></script>
-    <script src="/Scripts/app/controllers/shared/navigationcontroller.js"></script>
-    <script src="/Scripts/app/services/shared/navigationservice.js"></script>
     <script src="/Scripts/app/directives/shared/topmenu.js"></script>
+
+    <!-- Load services -->
+    <script src="/Scripts/app/services/shared/navigationservice.js"></script>
+    <script src="/Scripts/app/services/places/placesExplorerService.js"></script>
+    <script src="/Scripts/app/services/places/placesPhotosService.js"></script>
+    @*<script src="/Scripts/app/services/places/placesDataService.js"></script>*@
+
+
     <script src="/Scripts/app/services/shared/servicehelper.js"></script>
     <script src="/Scripts/app/services/locations/locationservice.js"></script>
+
+    <!-- Load controllers -->
+    <script src="/Scripts/app/controllers/shared/navigationcontroller.js"></script>
     <script src="/Scripts/app/controllers/home/homecontroller.js"></script>
+    <script src="/Scripts/app/controllers/places/placesexplorercontroller.js"></script>
+
+    <!-- Load custom filters -->
+    <script src="/Scripts/app/filters/placeNameCategoryFilter.js"></script>
+
 }

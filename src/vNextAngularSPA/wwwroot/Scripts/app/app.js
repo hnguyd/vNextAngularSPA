@@ -1,5 +1,5 @@
 //window.app = angular.module('resourceManagerApp', ['ui.select2', 'ngTable', 'ngRoute', 'ngResource', 'ngAnimate', 'custom-utilities']);
-window.app = angular.module('vNextApp', ['ui.select2', 'ngRoute', 'ngResource', 'ngAnimate', 'custom-utilities']);
+window.app = angular.module('vNextApp', ['ui.bootstrap','ui.select2', 'ngRoute', 'ngResource', 'ngAnimate', 'custom-utilities']);
 app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', function ($routeProvider, $locationProvider, $httpProvider, $provide) {
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -18,10 +18,11 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', 
         .when('/Resources/Add', { templateUrl: '/Scripts/app/views/resources/Add.html', controller: 'ResourceCtrl' })
         .when('/Resources/Edit/:resourceId', { templateUrl: '/Scripts/app/views/resources/Edit.html', controller: 'ResourceEditCtrl' })
         .when('/Resources/:resourceId', { templateUrl: '/Scripts/app/views/resources/Details.html', controller: 'ResourceCtrl' })
+        .when('/Places', { templateUrl: '/Scripts/app/views/places/Places.html', controller: 'PlacesExplorerCtrl' })
         .when('/Home', { templateUrl: '/Scripts/app/views/home/Home.html', controller: 'HomeCtrl' })
         .when('/Error', { templateUrl: '/Scripts/app/views/shared/Error.html' })
         .otherwise({
-            redirectTo: '/Login'
+            //redirectTo: '/Login'
         });
 
     // $httpProvider.interceptors.push('authorizationInterceptor');

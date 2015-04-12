@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Routing;
 using Microsoft.AspNet.Security.Cookies;
 using Microsoft.Data.Entity;
+using Microsoft.Framework.Cache.Memory;
 using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
@@ -31,26 +32,40 @@ namespace vNextAngularSPA
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add EF services to the services container.
-            services.AddEntityFramework(Configuration)
-                .AddSqlServer()
-                .AddDbContext<ApplicationDbContext>();
+			//Sql client not available on mono
+			var useInMemoryStore = Type.GetType("Mono.Runtime") != null;
+			if (useInMemoryStore)
+			{
+				services.AddEntityFramework(Configuration)
+						.AddInMemoryStore()
+						.AddDbContext<ApplicationDbContext>();
+			}
+			else
+			{
+				// Add EF services to the services container.
+				services.AddEntityFramework(Configuration)
+					.AddSqlServer()
+					.AddDbContext<ApplicationDbContext>();
+			}
 
-            // Add Identity services to the services container.
-            services.AddIdentity<ApplicationUser, IdentityRole>(Configuration)
+			// Add Identity services to the services container.
+			services.AddIdentity<ApplicationUser, IdentityRole>(Configuration)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Add MVC services to the services container.
             services.AddMvc();
 
-            // Uncomment the following line to add Web API servcies which makes it easier to port Web API 2 controllers.
-            // You need to add Microsoft.AspNet.Mvc.WebApiCompatShim package to project.json
-            // services.AddWebApiConventions();
+			// Uncomment the following line to add Web API servcies which makes it easier to port Web API 2 controllers.
+			// You need to add Microsoft.AspNet.Mvc.WebApiCompatShim package to project.json
+			// services.AddWebApiConventions();
 
-        }
+			//Add InMemoryCache
+			services.AddSingleton<IMemoryCache, MemoryCache>();
 
-        // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
+		}
+
+		// Configure is called after ConfigureServices is called.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory)
         {
             // Configure the HTTP request pipeline.
             // Add the console logger.

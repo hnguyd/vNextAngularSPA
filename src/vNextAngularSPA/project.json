@@ -5,9 +5,10 @@
         "Kestrel": "1.0.0-beta3",
         "Microsoft.AspNet.Hosting": "1.0.0-beta3",
         "EntityFramework.SqlServer": "7.0.0-beta3",
+        "EntityFramework.InMemory": "7.0.0.0-beta3",
         "EntityFramework.Commands": "7.0.0-beta3",
         "Microsoft.AspNet.Mvc": "6.0.0-beta3",
-        "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-beta3", 
+        "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-beta3",
         "Microsoft.AspNet.Diagnostics": "1.0.0-beta3",
         "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-beta3",
         "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta3",
@@ -24,12 +25,16 @@
     "commands": {
         "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
         "gen": "Microsoft.Framework.CodeGeneration",
-        "ef":  "EntityFramework.Commands",
+        "ef": "EntityFramework.Commands",
         "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004"
     },
     "frameworks": {
         "aspnet50": { },
-        "aspnetcore50": { }
+        "aspnetcore50": {
+            "dependencies": {
+                "Newtonsoft.Json": "7.0.1.0-beta2"
+            }
+        }
     },
     "exclude": [
         "wwwroot",

@@ -1,0 +1,40 @@
+{
+  "name": "angular-ui-bootstrap-fontawesome",
+  "version": "0.2.0",
+  "description": "A plugin for UI-Bootstrap that provides component templates using Font-Awesome, instead of Glyphicons",
+  "main": "dist/ui-bootstrap-fontawesome-latest.js",
+  "keywords": [
+    "angular",
+    "ui-bootstrap",
+    "fontawesome",
+    "font-awesome"
+  ],
+  "authors": [
+    "Max Fierke <max@maxfierke.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/maxfierke/ui-bootstrap-fontawesome",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "misc",
+    "src",
+    "template",
+    "Gruntfile.js",
+    "karma.conf.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular-ui-bootstrap-bower": "~0.12.0"
+  },
+  "_release": "0.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.0",
+    "commit": "76f25ac49cf5b1357c0c59d9ba7db3c244386f7d"
+  },
+  "_source": "git://github.com/maxfierke/ui-bootstrap-fontawesome.git",
+  "_target": "~0.2.0",
+  "_originalSource": "angular-ui-bootstrap-fontawesome"
+}
