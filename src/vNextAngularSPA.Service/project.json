@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0-*",
+    "dependencies": {        
+        "vNextAngularSPA.Data": "1.0.0-*",
+        "vNextAngularSPA.Model": "1.0.0-*"
+    },
+
+    "frameworks": {
+        "aspnet50": {
+            "dependencies": {
+            }
+        },
+        "aspnetcore50": {
+            "dependencies": {
+                "System.Runtime": "4.0.20-beta-22523"
+            }
+        }
+    }
+}
