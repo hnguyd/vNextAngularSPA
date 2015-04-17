@@ -5,15 +5,19 @@ namespace vNextAngularSPA.Data.Infrastructure
 {
 public class DatabaseFactory : Disposable, IDatabaseFactory
 {
-    private ApplicationDbContext dataContext;
-    public ApplicationDbContext Get()
+    private ApplicationDbContext dbContext;
+	public DatabaseFactory(ApplicationDbContext dbContext)
+	{
+		this.dbContext = dbContext;
+	}
+	public ApplicationDbContext Get()
     {
-        return dataContext ?? (dataContext = new ApplicationDbContext());
+        return this.dbContext ?? (this.dbContext = new ApplicationDbContext());
     }
     protected override void DisposeCore()
     {
-        if (dataContext != null)
-            dataContext.Dispose();
+        if (dbContext != null)
+            dbContext.Dispose();
     }
 }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNet.Mvc;
 using vNextAngularSPA.Service;
 using vNextAngularSPA.Model;
+using vNextAngularSPA.Data;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,16 +14,21 @@ namespace WebAPI.Controllers.Controllers
     public class PlacesController : BaseController
     {
         private readonly IBookmarkedPlaceService bookmarkedPlaceService;
-
-        public PlacesController(IBookmarkedPlaceService bookMarkedPlaceService)
-        {
-            bookmarkedPlaceService = bookMarkedPlaceService;
-        }
-        // GET: api/values
-        [HttpGet]
+		public PlacesController(IBookmarkedPlaceService bookMarkedPlaceService)
+		{
+			bookmarkedPlaceService = bookMarkedPlaceService;
+		}
+		//private readonly ApplicationDbContext dbContext;
+		//public PlacesController(ApplicationDbContext context)
+		//{
+		//	dbContext = context;
+		//}
+		// GET: api/values
+		[HttpGet]
         public List<BookmarkedPlace> Get()
         {
-            //return new string[] { "value1", "value2" };
+			//return new string[] { "value1", "value2" };
+			//var bookMarks = dbContext.BookMarkedPlaces.ToList();
             var bookMarks = bookmarkedPlaceService.GetAll();
             return bookMarks.ToList();
         }

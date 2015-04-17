@@ -180,3 +180,5 @@
 /// <reference path="lib/angular-ui-bootstrap-fontawesome/ui-bootstrap-fontawesome-latest.js" />
 /// <reference path="lib/toaster/toaster.js" />
 /// <reference path="lib/toastr/toastr.js" />
+/// <reference path="scripts/app/controllers/places/mysavedplacescontroller.js" />
+/// <reference path="scripts/app/controllers/shared/usercontextcontroller.js" />

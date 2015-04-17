@@ -107,8 +107,8 @@ app.controller('PlacesExplorerCtrl', function ($scope, placesExplorerService, pl
         if (!placesDataService.getUserInContext()) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'app/views/userprofile.html',
-                controller: 'userContextController',
+                templateUrl: '/Scripts/app/views/home/UserProfile.html',
+                controller: 'UserContextCtrl',
                 resolve: {
                     venue: function () {
                         return venue;

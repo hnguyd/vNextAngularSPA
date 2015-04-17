@@ -19,6 +19,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', 
         .when('/Resources/Edit/:resourceId', { templateUrl: '/Scripts/app/views/resources/Edit.html', controller: 'ResourceEditCtrl' })
         .when('/Resources/:resourceId', { templateUrl: '/Scripts/app/views/resources/Details.html', controller: 'ResourceCtrl' })
         .when('/Places', { templateUrl: '/Scripts/app/views/places/Places.html', controller: 'PlacesExplorerCtrl' })
+		.when('/Places/MySavedPlaces', { templateUrl: '/Scripts/app/views/places/MySavedPlaces.html', controller: 'MySavedPlacesCtrl' })
         .when('/Home', { templateUrl: '/Scripts/app/views/home/Home.html', controller: 'HomeCtrl' })
         .when('/Error', { templateUrl: '/Scripts/app/views/shared/Error.html' })
         .otherwise({

@@ -2,7 +2,7 @@
 app.controller('HomeCtrl', ['$scope', function ($scope) {
     init();
     function init() {
-        loadResources();
+    	loadResources();
     }
     function loadResources() {
         //$scope.resources = resourceSvc.getTopFiveResources();

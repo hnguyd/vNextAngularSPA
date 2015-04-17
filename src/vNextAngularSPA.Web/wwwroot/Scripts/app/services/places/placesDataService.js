@@ -1,7 +1,7 @@
 ﻿'use strict';
 app.factory('placesDataService', function ($http, toaster) {
 
-    var serviceBase = '/api/places/';
+    var serviceBase = '/api/Places/';
     var placesDataFactory = {};
     var userInContext = null;
 

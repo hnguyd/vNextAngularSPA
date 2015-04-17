@@ -12,7 +12,6 @@ namespace vNextAngularSPA.Data.Infrastructure
     public abstract class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private ApplicationDbContext dbContext;
-        private readonly List<T> _items = new List<T>();
 
         protected GenericRepository(IDatabaseFactory databaseFactory)
         {
@@ -29,39 +28,41 @@ namespace vNextAngularSPA.Data.Infrastructure
         {
             get { return dbContext ?? (dbContext = DatabaseFactory.Get()); }
         }
-
-        public virtual T GetById(Predicate<T> match) 
+		//Expression<Func<T, bool>> where
+		public virtual T GetById(Predicate<T> match) 
         {
-            return _items.Find(match);
-        }
+			//return DataContext.Set<T>().AsEnumerable<T>().SingleOrDefault();
+			return DataContext.Set<T>().ToList<T>().Find(match);
+		}
         public virtual IEnumerable<T> GetAll()
         {
-            return _items;
+			return DataContext.Set<T>().AsEnumerable<T>();
         }
         public virtual IEnumerable<T> GetMany(Predicate<T> match)
         {
-            return _items.FindAll(match);
-        }
+			return DataContext.Set<T>().ToList<T>().FindAll(match);
+		}
 
         public virtual T Add(T entity)
         {
-            _items.Add(entity);
+			DataContext.Add(entity);
             return entity;
         }
         public virtual void Update(T entity)
         {
-            _items.Add(entity);
-            dbContext.Entry(entity).SetState(EntityState.Modified);
+			DataContext.Attach(entity);
+			DataContext.Entry(entity).SetState(EntityState.Modified);
         }
         public virtual void Delete(T entity)
         {
-            _items.Remove(entity);
-            dbContext.Remove(entity);
+            DataContext.Remove(entity);
         }
         public virtual void Delete(Predicate<T> match)
         {
-            _items.RemoveAll(match);
-        }
+			foreach (var entity in GetMany(match)) {
+				DataContext.Remove(entity);
+			}
+		}
 
         public virtual void Save()
         {
