@@ -37,3 +37,13 @@ textarea {
         z-index: 10 !important;
     }
 }
+
+/* CUSTOM Classes
+-------------------------------------------------- */
+.loffset { margin-left: 40px; }
+.loffset2 { margin-left: 80px; }
+.loffset3 { margin-left: 120px; }
+.loffset4 { margin-left: 160px; }
+.loffset5 { margin-left: 200px; }
+.loffset6 { margin-left: 240px; }
+.loffset7 { margin-left: 280px; }

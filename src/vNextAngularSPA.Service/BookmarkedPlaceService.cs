@@ -10,6 +10,7 @@ namespace vNextAngularSPA.Service
     {
         BookmarkedPlace GetById(int Id);
         IEnumerable<BookmarkedPlace> GetAll();
+        IEnumerable<BookmarkedPlace> GetMany(string userName);
     }
     public class BookmarkedPlaceService : IBookmarkedPlaceService
     {
@@ -29,6 +30,11 @@ namespace vNextAngularSPA.Service
         public IEnumerable<BookmarkedPlace> GetAll()
         {
             return bookmarkedPlaceRepository.GetAll();
+        }
+
+        public IEnumerable<BookmarkedPlace> GetMany(string userName)
+        {
+            return bookmarkedPlaceRepository.GetMany(x => x.UserName == userName);
         }
     }
 }

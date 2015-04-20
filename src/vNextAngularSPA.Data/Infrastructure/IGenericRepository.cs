@@ -11,7 +11,7 @@ namespace vNextAngularSPA.Data.Infrastructure
     {
         T GetById(Predicate<T> match);
         IEnumerable<T> GetAll();
-        IEnumerable<T> GetMany(Predicate<T> match);
+        IEnumerable<T> GetMany(Expression<Func<T, bool>> match);
 
         T Add(T entity);
         void Update(T entity);

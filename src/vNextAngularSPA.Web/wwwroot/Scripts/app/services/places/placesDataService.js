@@ -1,19 +1,16 @@
 ﻿'use strict';
-app.factory('placesDataService', function ($http, toaster) {
-
-    var serviceBase = '/api/Places/';
+app.factory('placesDataService', ['$http', 'toaster', 'serviceHelperSvc', function ($http, toaster, serviceHelper) {
+    var BookmarkedPlace = serviceHelper.BookmarkedPlace;
+    var serviceBase = 'http://localhost:35115/api/Places/';
     var placesDataFactory = {};
     var userInContext = null;
 
     var _getUserInCtx = function () {
-
         return userInContext;
     };
 
     var _setUserInCtx = function (userInCtx) {
-
         userInContext = userInCtx;
-
     };
 
     var _savePlace = function (venue) {
@@ -47,10 +44,16 @@ app.factory('placesDataService', function ($http, toaster) {
     };
 
     var _getUserPlaces = function (userName, pageIndex, pageSize) {
-
-        return $http.get(serviceBase + userName, { params: { page: pageIndex, pageSize: pageSize } }).then(function (results) {
+        return $http.get(serviceBase, { params: { userName: userName, page: pageIndex, pageSize: pageSize } }).then(function (results) {
             return results;
+        }).catch(function (error) {
+            console.log(error);
         });
+        //return BookmarkedPlace.query({
+        //    userName: userName,
+        //    pageIndex: pageIndex,
+        //    pageSize: pageSize
+        //});
     };
 
     var _userExists = function (userName) {
@@ -69,4 +72,4 @@ app.factory('placesDataService', function ($http, toaster) {
     placesDataFactory.savePlace = _savePlace;
 
     return placesDataFactory
-});
+}]);

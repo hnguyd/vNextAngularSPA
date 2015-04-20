@@ -50,22 +50,32 @@ namespace vNextAngularSPA.API
 
 			//Add InMemoryCache
 			services.AddSingleton<IMemoryCache, MemoryCache>();
-			services.AddMvc();
 
-            ////Add InMemoryCache
-            //services.AddSingleton<IMemoryCache, MemoryCache>();
+			services.AddMvc();
 
             //Dependency Injection
             services.AddTransient<IDatabaseFactory, DatabaseFactory>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IBookmarkedPlaceRepository, BookmarkedPlaceRepository>();
             services.AddTransient<IBookmarkedPlaceService, BookmarkedPlaceService>();
+
         }
 
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
+
+            //Enable CORS from specific origins
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Append("Access-Control-Allow-Origin", "*");
+                context.Response.Headers.Add("Access-Control-Allow-Headers", new[] { "Content-Type, x-xsrf-token" });
+                context.Response.Headers.Add("Access-Control-Expose-Headers", new[] { "X-Pagination" });
+                //context.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "*" });
+                await next();
+            });
+
             // Add MVC to the request pipeline.
             app.UseMvc(routes =>
             {
@@ -73,7 +83,9 @@ namespace vNextAngularSPA.API
                     name: "default",
                     template: "{controller}/{action}/{id?}",
                     defaults: new { controller = "Home", action = "Index" });
+
             });
+
         }
     }
 }

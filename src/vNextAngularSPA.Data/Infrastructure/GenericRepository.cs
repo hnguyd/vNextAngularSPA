@@ -38,9 +38,9 @@ namespace vNextAngularSPA.Data.Infrastructure
         {
 			return DataContext.Set<T>().AsEnumerable<T>();
         }
-        public virtual IEnumerable<T> GetMany(Predicate<T> match)
+        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> match)
         {
-			return DataContext.Set<T>().ToList<T>().FindAll(match);
+            return DataContext.Set<T>().Where<T>(match);
 		}
 
         public virtual T Add(T entity)
@@ -57,7 +57,7 @@ namespace vNextAngularSPA.Data.Infrastructure
         {
             DataContext.Remove(entity);
         }
-        public virtual void Delete(Predicate<T> match)
+        public virtual void Delete(Expression<Func<T, bool>> match)
         {
 			foreach (var entity in GetMany(match)) {
 				DataContext.Remove(entity);

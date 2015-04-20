@@ -12,14 +12,21 @@ namespace vNextAngularSPA.Data
     {
         public Startup(IHostingEnvironment env)
         {
-            
+            // Setup configuration sources.
+            Configuration = new Configuration()
+                .AddJsonFile("config.json")
+                .AddEnvironmentVariables();
         }
-		        
+
+        public IConfiguration Configuration { get; set; }
+
         // This method gets called by a runtime.
         // Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddEntityFramework(Configuration)
+                    .AddSqlServer()
+                    .AddDbContext<ApplicationDbContext>();
         }
 
         // Configure is called after ConfigureServices is called.

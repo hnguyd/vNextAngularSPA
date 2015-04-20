@@ -26,6 +26,9 @@ app.factory('serviceHelperSvc', ['$http', '$resource', function ($http, $resourc
         Location: $resource(buildUrl('api/Locations/:locationId'), { locationId: '@Id' }, { 'update': { method: 'PUT' } }),
 
         ResourceActivity: $resource(buildUrl('api/Resources/:resourceId/Activities/:activityId'),
-                { resourceId: '@ResourceId', activityId: '@Id' })
+                { resourceId: '@ResourceId', activityId: '@Id' }),
+
+        BookmarkedPlace: $resource(buildUrl('api/Places/?userName=:userName&pageIndex=:pageIndex&pageSize=:pageSize'),
+            { userName: '@userName', pageIndex: '@pageIndex', pageSize: '@pageSize'})
     };
 }]);

@@ -8,7 +8,7 @@ using vNextAngularSPA.Data;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace WebAPI.Controllers.Controllers
+namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     public class PlacesController : BaseController
@@ -25,12 +25,27 @@ namespace WebAPI.Controllers.Controllers
 		//}
 		// GET: api/values
 		[HttpGet]
-        public List<BookmarkedPlace> Get()
+        public List<BookmarkedPlace> Get(string userName, int page = 0, int pageSize = 10)
         {
-			//return new string[] { "value1", "value2" };
-			//var bookMarks = dbContext.BookMarkedPlaces.ToList();
-            var bookMarks = bookmarkedPlaceService.GetAll();
-            return bookMarks.ToList();
+            var bookMarks = bookmarkedPlaceService.GetMany(userName);
+
+            var totalCount = bookMarks.Count();
+            var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+            var paginationHeader = new
+            {
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+            };
+
+            var jsonPaginationHeader = new string[] { Newtonsoft.Json.JsonConvert.SerializeObject(paginationHeader) };
+            Context.Response.Headers.Add("x-pagination", jsonPaginationHeader);
+
+            var results = bookMarks
+                .Skip(pageSize * page)
+                .Take(pageSize)
+                .ToList();
+
+            return results;
         }
 
         // GET api/values/5

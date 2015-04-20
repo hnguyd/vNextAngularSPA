@@ -43,8 +43,8 @@ namespace vNextAngularSPA.Data
             // TODO: Remove this when we start using auto generated values
             builder.Entity<BookmarkedPlace>().Property(a => a.Id).GenerateValueOnAdd(generateValue: false);
 
-            //Deleting a BookMarkedPlace fails with this relation
-            builder.Entity<BookmarkedPlace>().Ignore(a => a.VenueName);
+            ////Deleting a BookMarkedPlace fails with this relation
+            //builder.Entity<BookmarkedPlace>().Ignore(a => a.VenueName);
 
             base.OnModelCreating(builder);
         }

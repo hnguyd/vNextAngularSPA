@@ -3,7 +3,8 @@ window.app = angular.module('vNextApp', ['ui.bootstrap','ui.select2', 'toaster',
 app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', function ($routeProvider, $locationProvider, $httpProvider, $provide) {
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    $httpProvider.defaults.useXDomain = true;
+    //$httpProvider.defaults.useXDomain = true;
+
     $locationProvider.html5Mode({
         enabled: true,
         // requireBase: false

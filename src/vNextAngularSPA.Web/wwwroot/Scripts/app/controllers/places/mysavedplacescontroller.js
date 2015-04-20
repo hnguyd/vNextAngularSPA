@@ -17,11 +17,12 @@ app.controller('MySavedPlacesCtrl', function ($scope, placesDataService) {
 	function getUserPlaces() {
 
 		var userInCtx = placesDataService.getUserInContext();
-
+		debugger;
+		userInCtx = userInCtx != null ? userInCtx : "Minh";
 		if (userInCtx) {
 
-			placesDataService.getUserPlaces(userInCtx, $scope.currentPage - 1, $scope.pageSize).then(function (results) {
-
+		    placesDataService.getUserPlaces(userInCtx, $scope.currentPage - 1, $scope.pageSize).then(function (results) {
+		        debugger;
 				$scope.myPlaces = results.data;
 
 				var paginationHeader = angular.fromJson(results.headers("x-pagination"));

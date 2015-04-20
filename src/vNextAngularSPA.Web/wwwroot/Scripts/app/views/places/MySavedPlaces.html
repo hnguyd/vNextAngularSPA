@@ -1,7 +1,7 @@
 ﻿<div>
 	<div data-ng-show="myPlaces || myPlaces.length > 0">
 		<div>
-			<h3>Bookmarked places for user: <span class="text-warning">{{myPlaces[0].userName}}</span></h3>
+			<h3>Bookmarked places for user: <span class="text-warning">{{myPlaces[0].UserName}}</span></h3>
 		</div>
 	</div>
 	<table class="table table-striped table-bordered table-hover table-condensed">
@@ -21,16 +21,16 @@
 			</tr>
 			<tr data-ng-repeat="place in myPlaces">
 				<td>
-					<a target="_blank" data-ng-href="https://foursquare.com/v/{{place.venueID}}">{{ place.venueName }}</a>
+					<a target="_blank" data-ng-href="https://foursquare.com/v/{{place.venueID}}">{{ place.VenueName }}</a>
 				</td>
 				<td>
-					{{ place.category }}
+					{{ place.Category }}
 				</td>
 				<td>
-					{{ place.address }}
+					{{ place.Address }}
 				</td>
 				<td>
-					<span class="badge">{{ place.rating | number:1 }}</span>
+					<span class="badge">{{ place.Rating | number:1 }}</span>
 				</td>
 			</tr>
 		</tbody>
