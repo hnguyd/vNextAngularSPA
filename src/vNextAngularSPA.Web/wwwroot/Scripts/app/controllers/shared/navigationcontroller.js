@@ -1,6 +1,5 @@
 app.controller('NavigationCtrl', ['$scope', '$location', 'navigationSvc', function ($scope, $location, navigationSvc) {
     $scope.login = function (userLogin) {
-        debugger;
         $scope.errorMessage = '';
         navigationSvc.login(userLogin).$promise
         .then(function (data) {

@@ -1,6 +1,5 @@
 ﻿'use strict';
-app.factory('placesDataService', ['$http', 'toaster', 'serviceHelperSvc', function ($http, toaster, serviceHelper) {
-    var BookmarkedPlace = serviceHelper.BookmarkedPlace;
+app.factory('placesDataService', ['$http', 'toaster', function ($http, toaster) {
     var serviceBase = 'http://localhost:35115/api/Places/';
     var placesDataFactory = {};
     var userInContext = null;
@@ -28,10 +27,12 @@ app.factory('placesDataService', ['$http', 'toaster', 'serviceHelperSvc', functi
         return $http.post(serviceBase, miniVenue).then(
 
             function (results) {
+                debugger;
                 toaster.pop('success', "Bookmarked Successfully", "Place saved to your bookmark!");
             },
             function (results) {
                 if (results.status == 304) {
+                    debugger;
                     toaster.pop('note', "Already Bookmarked", "Already bookmarked for user: " + miniVenue.userName);
                 }
                 else {
@@ -49,11 +50,6 @@ app.factory('placesDataService', ['$http', 'toaster', 'serviceHelperSvc', functi
         }).catch(function (error) {
             console.log(error);
         });
-        //return BookmarkedPlace.query({
-        //    userName: userName,
-        //    pageIndex: pageIndex,
-        //    pageSize: pageSize
-        //});
     };
 
     var _userExists = function (userName) {

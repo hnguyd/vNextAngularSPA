@@ -99,6 +99,7 @@ namespace vNextAngularSPA.Data.Migrations
                         b.Property<DateTime?>("TS");
                         b.Property<string>("UserName");
                         b.Property<string>("VenueID");
+                        b.Property<string>("VenueName");
                         b.Key("Id");
                     });
                 

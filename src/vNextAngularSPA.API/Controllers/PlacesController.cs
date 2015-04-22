@@ -5,6 +5,7 @@ using Microsoft.AspNet.Mvc;
 using vNextAngularSPA.Service;
 using vNextAngularSPA.Model;
 using vNextAngularSPA.Data;
+using Microsoft.Data.Entity.Update;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,11 +19,6 @@ namespace WebAPI.Controllers
 		{
 			bookmarkedPlaceService = bookMarkedPlaceService;
 		}
-		//private readonly ApplicationDbContext dbContext;
-		//public PlacesController(ApplicationDbContext context)
-		//{
-		//	dbContext = context;
-		//}
 		// GET: api/values
 		[HttpGet]
         public List<BookmarkedPlace> Get(string userName, int page = 0, int pageSize = 10)
@@ -57,8 +53,24 @@ namespace WebAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]BookmarkedPlace bookmarkedPlace)
         {
+            try
+            {
+                var result = bookmarkedPlaceService.Add(bookmarkedPlace);
+                if(result == null)
+                {
+                    //Already have an object with the same values
+                }
+            }
+            catch(DbUpdateException ex)
+            {
+                throw ex;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // PUT api/values/5
