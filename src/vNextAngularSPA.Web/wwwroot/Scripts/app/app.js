@@ -1,5 +1,8 @@
 //window.app = angular.module('resourceManagerApp', ['ui.select2', 'ngTable', 'ngRoute', 'ngResource', 'ngAnimate', 'custom-utilities']);
-window.app = angular.module('vNextApp', ['ui.bootstrap','ui.select2', 'toaster', 'ngRoute', 'ngResource', 'ngAnimate', 'custom-utilities']);
+window.app = angular.module('vNextApp', ['ui.bootstrap', 'ui.grid', 'ui.grid.edit', 'ui.grid.exporter', 'ui.grid.pagination', 'ui.grid.selection', 'ui.select2',
+    'toaster',
+    'ngRoute', 'ngResource', 'ngAnimate', 'ngTouch',
+    'custom-utilities']);
 app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', function ($routeProvider, $locationProvider, $httpProvider, $provide) {
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];

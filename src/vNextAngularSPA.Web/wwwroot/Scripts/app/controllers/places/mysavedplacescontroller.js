@@ -1,8 +1,26 @@
 ﻿'use strict';
 app.controller('MySavedPlacesCtrl', function ($scope, placesDataService) {
 
-	$scope.myPlaces = [];
+    $scope.gridOptions = {
+        enableFiltering: true,
+        enableSorting: true,
+        showGridFooter: true,
+        enableGridMenu: true,
+        paginationPageSizes: [25, 100],
+        paginationPageSize: 25,
+        //exporterMenuCsv: false,
+	    columnDefs: [
+            { field: 'VenueName', name: 'Place Name'},
+            { field: 'Address' },
+            { field: 'Category' },
+            {
+                field: 'Rating',
+                cellTemplate: '<span class="badge">{{grid.appScope.gridOptions.data[rowRenderIndex].Rating}}</span>'
+            }
+	    ],
+	};
 
+	$scope.gridOptions.data = [];
 	//paging
 	$scope.totalRecordsCount = 0;
 	$scope.pageSize = 10;
@@ -11,7 +29,7 @@ app.controller('MySavedPlacesCtrl', function ($scope, placesDataService) {
 	init();
 
 	function init() {
-		getUserPlaces();
+	    getUserPlaces();
 	}
 
 	function getUserPlaces() {
@@ -22,7 +40,7 @@ app.controller('MySavedPlacesCtrl', function ($scope, placesDataService) {
 		if (userInCtx) {
 
 		    placesDataService.getUserPlaces(userInCtx, $scope.currentPage - 1, $scope.pageSize).then(function (results) {
-				$scope.myPlaces = results.data;
+		        $scope.gridOptions.data = results.data;
 
 				var paginationHeader = angular.fromJson(results.headers("x-pagination"));
 

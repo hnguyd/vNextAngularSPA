@@ -1,0 +1,30 @@
+{
+  "name": "angular-ui-grid-unstable",
+  "version": "3.0.0-rc.20",
+  "main": [
+    "./ui-grid.css",
+    "./ui-grid.eot",
+    "./ui-grid.js",
+    "./ui-grid.svg",
+    "./ui-grid.ttf",
+    "./ui-grid.woff"
+  ],
+  "authors": [
+    "Matthias Brooks <matthias.brooks@live.com>"
+  ],
+  "description": "Angular UI Grid Unstable",
+  "ignore": [],
+  "dependencies": {
+    "angular": "1.2.16 - 1.3.x"
+  },
+  "homepage": "http://ui-grid.info",
+  "_release": "3.0.0-rc.20",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.0.0-rc.20",
+    "commit": "1c49b70f14121a33342fd327d87cecef8b2ea04a"
+  },
+  "_source": "git://github.com/matthiassb/angular-ui-grid-unstable.git",
+  "_target": "~3.0.0-rc.20",
+  "_originalSource": "angular-ui-grid-unstable"
+}

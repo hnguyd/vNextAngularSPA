@@ -27,18 +27,18 @@ app.factory('placesDataService', ['$http', 'toaster', function ($http, toaster) 
         return $http.post(serviceBase, miniVenue).then(
 
             function (results) {
-                debugger;
-                toaster.pop('success', "Bookmarked Successfully", "Place saved to your bookmark!");
+                if (results.data == "Success")
+                    toaster.pop('success', "Bookmarked Successfully", "Place saved to your bookmark!");
+                else
+                    toaster.pop('error', "Failed to Bookmark", "Something went wrong while saving :-(");
             },
             function (results) {
                 if (results.status == 304) {
-                    debugger;
                     toaster.pop('note', "Already Bookmarked", "Already bookmarked for user: " + miniVenue.userName);
                 }
                 else {
                     toaster.pop('error', "Failed to Bookmark", "Something went wrong while saving :-(");
                 }
-
 
                 return results;
             });

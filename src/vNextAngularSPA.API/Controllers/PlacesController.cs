@@ -4,8 +4,8 @@ using System.Linq;
 using Microsoft.AspNet.Mvc;
 using vNextAngularSPA.Service;
 using vNextAngularSPA.Model;
-using vNextAngularSPA.Data;
 using Microsoft.Data.Entity.Update;
+using WebAPI.Common;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]BookmarkedPlace bookmarkedPlace)
+        public ActionResult Post([FromBody]BookmarkedPlace bookmarkedPlace)
         {
             try
             {
@@ -61,15 +61,17 @@ namespace WebAPI.Controllers
                 if(result == null)
                 {
                     //Already have an object with the same values
+                    return Util.GetJsonResult(String.Empty, 304);
                 }
+                return Util.GetJsonResult("Success", null);
             }
             catch(DbUpdateException ex)
             {
-                throw ex;
+                return Util.GetJsonResult(String.Format("Error: {0}", ex.ToString()), null);
             }
             catch(Exception ex)
             {
-                throw ex;
+                return Util.GetJsonResult(String.Empty, 400);
             }
         }
 
