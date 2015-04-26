@@ -2,8 +2,8 @@
     ViewBag.Title = "Home Page";
 }
 
-    <div ng-controller="NavigationCtrl">
-        <div class="menu-container"><cst-top-menu/></div>
+    <div>
+		@await Html.PartialAsync("_MenuPartial")        
         <section id="main" class="container body-content">
             <div data-ng-view ng-animate>
                     
@@ -13,7 +13,6 @@
         <footer class="container">
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
-        <cst-loading-overlay class="hide"></cst-loading-overlay>
     </div> 
 
 @section Scripts {
@@ -21,22 +20,19 @@
     
     <!-- Load app main script -->
     <script src="/Scripts/app/app.js"></script>
-    <script src="/Scripts/app/directives/shared/topmenu.js"></script>
+	<script src="/Scripts/app/directives/shared/topmenu.js"></script>
 
     <!-- Load services -->
-    <script src="/Scripts/app/services/shared/navigationservice.js"></script>
     <script src="/Scripts/app/services/places/placesExplorerService.js"></script>
     <script src="/Scripts/app/services/places/placesPhotosService.js"></script>
     <script src="/Scripts/app/services/places/placesDataService.js"></script>
 
-    
-    <script src="/Scripts/app/services/locations/locationservice.js"></script>
-
     <!-- Load controllers -->
-    <script src="/Scripts/app/controllers/shared/navigationcontroller.js"></script>
-    <script src="/Scripts/app/controllers/home/homecontroller.js"></script>
+	<script src="~/Scripts/app/controllers/shared/confirmmodalcontroller.js"></script>
 	<script src="/Scripts/app/controllers/shared/usercontextcontroller.js"></script>
-    <script src="/Scripts/app/controllers/places/placesexplorercontroller.js"></script>
+	<script src="/Scripts/app/controllers/home/homecontroller.js"></script>
+    <script src="/Scripts/app/controllers/places/placesphotoscontroller.js"></script>
+	<script src="/Scripts/app/controllers/places/placesexplorercontroller.js"></script>
 	<script src="/Scripts/app/controllers/places/mysavedplacescontroller.js"></script>
 
     <!-- Load custom filters -->

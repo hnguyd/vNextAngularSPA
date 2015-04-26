@@ -45,6 +45,6 @@
     ],
     "scripts": {
         "postrestore": [ "npm install" ],
-        "prepare": [ "grunt bower:install" ]
+        "prepare": [ "grunt" ]
     }
 }

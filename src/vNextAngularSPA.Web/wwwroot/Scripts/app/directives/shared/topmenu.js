@@ -1,9 +1,14 @@
-app.directive('cstTopMenu', function () {
+"use strict";
+app.directive('cstTopMenu', [function () {
     return {
-        restrict: 'E',
+    	restrict: 'A',
+    	scope: {
+			username: '@username',
+			showlogoff: '@showlogoff'
+    	},
         replace: true,
         templateUrl: '/Scripts/app/partials/TopMenu.html',
-        link: function (scope, element, attrs) {
+        link: function (scope, element, attrs, ngModelCtrl) {
             var menuItems = element.find("a");
             menuItems.on('click', function () {
                 menuItems.removeClass('active');
@@ -19,4 +24,4 @@ app.directive('cstTopMenu', function () {
             });
         }
     };
-});
+}]);

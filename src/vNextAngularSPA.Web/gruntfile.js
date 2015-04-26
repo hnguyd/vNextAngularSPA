@@ -9,13 +9,25 @@ module.exports = function (grunt) {
                     targetDir: "wwwroot/lib",
                     layout: "byComponent",
                     cleanTargetDir: false
-                }
+                },
             }
-        }
+        },
+        //copy: {
+        //	main: {
+        //		files: [
+		//			{
+		//				expand: true,
+		//				flatten: true,
+		//				src: ['wwwroot/lib/font-awesome/fonts/*'], dest: 'wwwroot/fonts/'
+		//			}
+		//		]
+        //	}
+        //}
     });
 
-    // This command registers the default task which will install bower packages into wwwroot/lib
-    grunt.registerTask("default", ["bower:install"]);
+    //grunt.loadNpmTasks('grunt-contrib-copy');
+	// This command registers the default task which will install bower packages into wwwroot/lib
+	grunt.registerTask("default", ["bower:install"]);
 
     // The following line loads the grunt plugins.
     // This line needs to be at the end of this this file.

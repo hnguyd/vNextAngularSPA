@@ -17,15 +17,18 @@
                 <li><a href="/Contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown" id="menuLogin">
+                <li class="dropdown" id="menuLogin" ng-show="{{showlogoff}}">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin"><i class="fa fa-user fa-2x"></i></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">User Login</a></li>
-                        <li><a href="#">Item 1</a></li>
+						<li><a href="/Account/Manage" target="_self">Hello, {{username}}!</a></li>
+						<li><a href="#">Item 1</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Item 2</a></li>
+						<li ng-show="{{showlogoff}}"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                     </ul>
                 </li>
+				<li ng-hide="{{showlogoff}}"><a href="/Account/Register" target="_self">Register</a></li>
+				<li ng-hide="{{showlogoff}}"><a href="/Account/Login" target="_self">Login</a></li>
             </ul>
         </div>
     </div>

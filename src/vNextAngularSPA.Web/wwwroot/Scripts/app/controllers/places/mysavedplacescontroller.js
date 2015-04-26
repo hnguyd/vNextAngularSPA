@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('MySavedPlacesCtrl', function ($scope, placesDataService) {
+app.controller('MySavedPlacesCtrl', function ($scope, placesDataService, $modal) {
 
     $scope.gridOptions = {
         enableFiltering: true,
@@ -10,13 +10,18 @@ app.controller('MySavedPlacesCtrl', function ($scope, placesDataService) {
         paginationPageSize: 25,
         //exporterMenuCsv: false,
 	    columnDefs: [
-            { field: 'VenueName', name: 'Place Name'},
+			{ field: 'VenueName', name: 'Place Name' },
             { field: 'Address' },
             { field: 'Category' },
             {
                 field: 'Rating',
                 cellTemplate: '<span class="badge">{{grid.appScope.gridOptions.data[rowRenderIndex].Rating}}</span>'
-            }
+            },
+			{
+				name: 'Command',
+				cellTemplate: '<i class="fa fa-fw fa-trash-o" title="Delete" message="Do you want to remove this item?" ' + 
+					'data-ng-click="grid.appScope.deleteItem({{grid.appScope.gridOptions.data[rowRenderIndex].Id}});"></i>'
+			}
 	    ],
 	};
 
@@ -51,6 +56,27 @@ app.controller('MySavedPlacesCtrl', function ($scope, placesDataService) {
 			});
 		}
 	}
+
+
+	$scope.deleteItem = function (venueId) {
+		var modalInstance = $modal.open({
+			templateUrl: '/Scripts/app/partials/ConfirmModal.html',
+			controller: 'confirmModalCtrl',
+			resolve: {
+				title: function () {
+					return "TITLE";
+				},
+				message: function() {
+					return "DO YOU WANT TO DELETE THIS?";
+				}
+			}
+		});
+		modalInstance.result.then(function () {
+			//Deletion Logic Code Here
+		}, function () {
+			//alert('Modal dismissed at: ' + new Date());
+		});
+	};
 
 	$scope.pageChanged = function (page) {
 

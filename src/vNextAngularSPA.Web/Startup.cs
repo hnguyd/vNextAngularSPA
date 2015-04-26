@@ -9,6 +9,8 @@ using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
 using vNextAngularSPA.Data;
 using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Identity;
+using Microsoft.Framework.ConfigurationModel;
 
 namespace vNextAngularSPA.Web
 {
@@ -18,12 +20,23 @@ namespace vNextAngularSPA.Web
         {
             
         }
-        
-        // This method gets called by the runtime.
-        public void ConfigureServices(IServiceCollection services)
-        {            
-            // Add MVC services to the services container.
-            services.AddMvc();
+
+		public IConfiguration Configuration { get; set; }
+
+		// This method gets called by the runtime.
+		public void ConfigureServices(IServiceCollection services)
+        {
+			// Add EF services to the services container.
+			services.AddEntityFramework(Configuration)
+				.AddSqlServer()
+				.AddDbContext<ApplicationDbContext>();
+
+			// Add Identity services to the services container.
+			services.AddIdentity<ApplicationUser, IdentityRole>(Configuration)
+				.AddEntityFrameworkStores<ApplicationDbContext>();
+
+			// Add MVC services to the services container.
+			services.AddMvc();
 
             // Uncomment the following line to add Web API servcies which makes it easier to port Web API 2 controllers.
             // You need to add Microsoft.AspNet.Mvc.WebApiCompatShim package to project.json
@@ -60,25 +73,27 @@ namespace vNextAngularSPA.Web
             // Add MVC to the request pipeline.
             app.UseMvc(routes =>
             {
-                //Angular Catch All Route for SPA
-                routes.MapRoute(
-                    name: "Catch all route for SPA",
-                    template: "{*catchall}",
-                    defaults: new
-                    {
-                        controller = "Home",
-                        action = "Index"
-                    });
+				//Angular Catch All Route for SPA
+				routes.MapRoute(
+					name: "Catch all route for SPA",
+					template: "{*catchall}",
+					defaults: new
+					{
+						controller = "Home",
+						action = "Index"
+					});
+				
+				//Uncomment the following line to add a route for porting Web API 2 controllers.
+				//routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
 
-                // OOTB Routing 
-                routes.MapRoute(
+				// OOTB Routing 
+				routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action}/{id?}",
                     defaults: new { controller = "Home", action = "Index" });
-                
-                // Uncomment the following line to add a route for porting Web API 2 controllers.
-                // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
-            });
+
+				
+			});
         }
     }
 }

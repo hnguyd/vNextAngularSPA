@@ -1,0 +1,14 @@
+﻿@using System.Security.Principal
+
+@if (User.Identity.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+		<div class="menu-container"><div username="@(User.Identity.GetUserName())" showlogoff="true" cst-top-menu></div></div>
+	}
+}
+else
+{
+	<div class="menu-container"><div username="Not Logged In" showlogoff="false" cst-top-menu></div></div>
+}

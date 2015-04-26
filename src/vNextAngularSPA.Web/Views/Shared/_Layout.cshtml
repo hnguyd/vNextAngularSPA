@@ -8,25 +8,26 @@
 
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="~/lib/bootstrap-touch-carousel/css/bootstrap-touch-carousel.css" />
-    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="~/lib/angular-ui-grid-unstable/ui-grid.css" />
+	<link rel="stylesheet" href="~/lib/angular-loading-bar/loading-bar.css" />
     <link rel="stylesheet" href="~/lib/toaster/toaster.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
-    @*@await Html.PartialAsync("_LoginPartial")*@
+<body>    
     @RenderBody()
 
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     <script src="~/lib/angular/angular.js"></script>
+	<script src="~/lib/angular-loading-bar/loading-bar.js"></script>
     <script src="~/lib/angular-route/angular-route.js"></script>
     <script src="~/lib/angular-resource/angular-resource.js"></script>
     <script src="~/lib/angular-animate/angular-animate.js"></script>
     <script src="~/lib/angular-touch/angular-touch.js"></script>
     <script src="~/lib/angular-ui-grid-unstable/ui-grid.js"></script>
     <script src="~/lib/pdfmake/pdfmake.js"></script>
-    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+	<script src="~/lib/pdfmake/vfs_fonts.js"></script>
     <script src="~/lib/angular-ui-bootstrap/ui-bootstrap-tpls-0.9.0.min.js"></script>
     <script src="~/lib/angular-ui-select2/select2.js"></script>
 

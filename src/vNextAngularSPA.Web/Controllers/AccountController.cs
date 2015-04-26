@@ -7,7 +7,7 @@ using vNextAngularSPA.Data;
 
 namespace vNextAngularSPA.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)

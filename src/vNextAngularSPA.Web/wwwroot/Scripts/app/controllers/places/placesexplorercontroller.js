@@ -70,8 +70,8 @@ app.controller('PlacesExplorerCtrl', function ($scope, placesExplorerService, pl
 
         placesPhotosService.get({ venueId: venueId }, function (photosResult) {
             var modalInstance = $modal.open({
-                templateUrl: 'app/views/placesphotos.html',
-                controller: 'placesPhotosController',
+            	templateUrl: '/Scripts/app/views/places/PlacesPhotos.html',
+                controller: 'placesPhotosCtrl',
                 resolve: {
                     venueName: function () {
                         return venueName;
@@ -83,7 +83,7 @@ app.controller('PlacesExplorerCtrl', function ($scope, placesExplorerService, pl
             });
 
             modalInstance.result.then(function () {
-                //$scope.selected = selectedItem;
+                $scope.selected = selectedItem;
             }, function () {
                 //alert('Modal dismissed at: ' + new Date());
             });

@@ -10,8 +10,6 @@ namespace vNextAngularSPA.Data
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        private static bool _created = false;
-
         public ApplicationDbContext()
         {
             // Create the database and schema if it doesn't exist
